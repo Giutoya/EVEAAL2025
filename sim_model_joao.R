@@ -157,6 +157,8 @@ sfcr_validate(tfm_sim, sim, which = "tfm")
 #Diagrama de Sankey
 
 #Otro beneficio de tener una matriz de flujo de transacciones que se valida en el modelo es que podemos construir con confianza una representación de Sankey de esta matriz con la  función sfcr_sankey():
+###run the follwoing line to fix the bug. You have to quit R before installing the patch
+#devtools::install_github("TnTo/sfcr", ref = "sankey")
 
 sfcr_sankey(tfm_sim, sim)
 
