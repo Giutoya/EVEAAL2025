@@ -23,29 +23,29 @@ w=1
 #g_d=20
 #VARIABLES
 #Income
-y=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+y=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Consumption demand
-c_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+c_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Consumption supply
-c_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+c_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Government expenditures demand
-g_d=matrix(data=20,nrow=nPeriods,ncol=nPeriods) 
+g_d=matrix(data=20,nrow=nScenarios,ncol=nPeriods) 
 #Government expenditures supply
-g_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+g_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 #Taxes demanded
-t_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+t_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Taxes supplied
-t_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+t_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Disposable income
-yd=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+yd=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Cash demand
-h_h=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+h_h=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Cash supply
-h_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+h_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Labour demand
-n_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+n_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 #Labour supply
-n_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+n_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 
 
 #MODEL
@@ -54,11 +54,13 @@ for (j in 1:nScenarios){
 
   #Define time
  for (i in 2:nPeriods){
-  
+   
+   #Define iterations
    for (iterations in 1:nPeriods){
-    
+     
+     #Define alternative scenarios
      if (i>=15 && j==2){
-       g_d[j,i]=25   #Government expenditures passed from 20 to 25 after 15 periods
+       g_d[2,i]=25   #Government expenditures passed from 20 to 25 after 15 periods
      }    
     
     
@@ -97,7 +99,7 @@ for (j in 1:nScenarios){
 #Figure 3.1
 plot(y[1,2:100],type="l",col="4",lwd=2,lty=1,font.main=1,cex.main=0.75,main="Figure 3.1: Impact of Y and Y* of a permanent increase in G",ylab = '',xlab = '',ylim=range(0,130))
 lines(y[2,2:100],type="l",lwd=2,lty=1,col="3")
-legend("bottomleft",c("Steady state solution Y*","Income Y"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,3), box.lwd=0)
+legend("topleft",c("Steady state solution Y*","Income Y"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,3), box.lwd=0)
 
 #Figure 3.2
 plot(yd[2,2:100],type="l",col="2",lwd=2,lty=1,font.main=1,cex.main=0.75,main="Figure 3.2: YD and C starting from scratch",ylab = '',xlab = '',ylim=range(0,130))
@@ -108,11 +110,11 @@ segments(x0=-3, # Value from x (initial)
          y0=100, # Value from y (initial)
          y1=100, # Value to y (final)
          col=1,lty=2,lwd=1)
-legend("bottomleft",c("Income YD","Consumption C"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(2,3), box.lwd=0)
+legend("topleft",c("Income YD","Consumption C"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(2,3), box.lwd=0)
 
 #Figure 3.3
 plot(h_h[2,2:100],type="l",lwd=2,lty=1,col="4",font.main=1,cex.main=0.75,main="Figure 3.3: Wealth level and wealth change, starting from scratch",ylab = '',xlab = '')
 par(new="TRUE")
 plot(diff(h_h[2,2:100]),type="l",lwd=2,lty=1,col="2",xlab = '',ylab = '',xaxt='n',yaxt='n')
 axis(side=4)
-legend("bottomleft",c("Wealth level H (money stock)","Household saving (the change in H)"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,2), box.lwd=0)
+legend("topleft",c("Wealth level H (money stock)","Household saving (the change in H)"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,2), box.lwd=0)

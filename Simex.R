@@ -23,33 +23,33 @@ w=1
 #g_d=20
 #VARIABLES
 #Income
-y=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+y=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Consumption demand
-c_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+c_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Consumption supply
-c_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+c_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Government expenditures demand
-g_d=matrix(data=20,nrow=nPeriods,ncol=nPeriods) 
+g_d=matrix(data=20,nrow=nScenarios,ncol=nPeriods) 
 #Government expenditures supply
-g_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+g_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 #Taxes demanded
-t_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+t_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Taxes supplied
-t_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+t_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Disposable income
-yd=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+yd=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Expected Disposable income
-yde=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+yde=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Cash demand
-h_h=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+h_h=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Expected Cash demand
-h_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+h_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Cash supply
-h_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods)
+h_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods)
 #Labour demand
-n_d=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+n_d=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 #Labour supply
-n_s=matrix(data=0,nrow=nPeriods,ncol=nPeriods) 
+n_s=matrix(data=0,nrow=nScenarios,ncol=nPeriods) 
 
 
 #MODEL
@@ -59,10 +59,12 @@ for (j in 1:nScenarios){
   #Define time
   for (i in 2:nPeriods){
     
+    #Define iterations
     for (iterations in 1:nPeriods){
       
+      #Define alternative scenarios
       if (i>=15 && j==2){
-        g_d[j,i]=25   #Government expenditures passed from 20 to 25 after 15 periods
+        g_d[2,i]=25   #Government expenditures passed from 20 to 25 after 15 periods
       }    
       
       
@@ -107,4 +109,4 @@ for (j in 1:nScenarios){
 #Figure 3.5
 plot(yd[1,2:100],type="l",col="4",lwd=2,lty=1,font.main=1,cex.main=0.75,main="Figure 3.5: YD and YDe starting from scratch",ylab = '',xlab = '',ylim=range(0,130))
 lines(yde[1,2:100],type="l",lwd=2,lty=1,col="3")
-legend("bottomleft",c("Disposable Income YD","Expected Disposable Income YDe"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,3), box.lwd=0)
+legend("topleft",c("Disposable Income YD","Expected Disposable Income YDe"),  bty = 1, cex = 0.8, lty=c(1,1), lwd=c(2,2), col = c(4,3), box.lwd=0)
